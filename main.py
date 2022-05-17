@@ -1,6 +1,5 @@
 from pygame import *
 from random import randint
-#import time
 
 font.init()
 
@@ -51,7 +50,6 @@ class GameSprite(sprite.Sprite):
             racket2.speedx=0
             racket2.speedy=0
             window.blit(lose, (215, win_height/2))
-            finish = True
 
 # класс главного игрока
 class Player(GameSprite):
@@ -76,6 +74,7 @@ number = randint(0,1)
 # Создаем окошко
 win_width = 500
 win_height = 700
+clock = time.Clock()
 icon = image.load('tenis_ball.png')
 display.set_caption("Ping-Pong")
 display.set_icon(icon)
@@ -90,36 +89,32 @@ ball = GameSprite('tenis_ball.png', win_width/2, win_height/2, 50, 50, 3, 3)
 
 # текст
 font = font.SysFont(None, 70)
-lose = font.render("You lose :(", True, (139, 0, 0))
+lose = font.render("You lose ;(", True, (139, 0, 0))
 
 
 # Основной цикл игры:
 run = True # флаг сбрасывается кнопкой закрытия окна
 
-
-finish = False # чтобы сделать автоматичекий перезапуск ишры после проигрыша однго из игроков
 while run:
-    if not finish:
-        # событие нажатия на кнопку Закрыть
-        for e in event.get():
-            if e.type == QUIT:
-                run = False
-        
-    # сама игра: действия спрайтов, проверка правил игры, перерисовка
-        # обновляем фон
-        window.fill((110,213,200))
 
-        # передвижение ракеток
-        racket1.update1()
-        racket2.update2()
-        ball.update()
-        # обновление персонажей
-        ball.reset()
-        racket1.reset()
-        racket2.reset() 
-    else:
-        time.delay(2000)
+    # событие нажатия на кнопку Закрыть
+    for e in event.get():
+        if e.type == QUIT:
+            run = False
+    
+# сама игра: действия спрайтов, проверка правил игры, перерисовка
+    # обновляем фон
+    window.fill((110,213,200))
+
+    # передвижение ракеток
+    racket1.update1()
+    racket2.update2()
+    ball.update()
+    # обновление персонажей
+    ball.reset()
+    racket1.reset()
+    racket2.reset()  
 
     # FPS
     display.update()
-    #time.сlock.tick(60)
+    clock.tick(60)
