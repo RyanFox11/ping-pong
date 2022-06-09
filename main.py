@@ -82,8 +82,8 @@ window = display.set_mode((win_width, win_height))
 
 
 # создаем ракетки
-racket1 = Player('racket.png', 100, win_height/2, 25, 110, 0, 15)
-racket2 = Player('racket.png', win_width-145, win_height/2, 25, 110, 0, 15)
+racket1 = Player('racket.png', 100, win_height/2, 25, 110, 0, 5)
+racket2 = Player('racket.png', win_width-145, win_height/2, 25, 110, 0, 5)
 ball = GameSprite('tenis_ball.png', win_width/2, win_height/2, 50, 50, 3, 3)
 
 
